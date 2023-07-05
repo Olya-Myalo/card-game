@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #004980;
+  }
+
+  @font-face {
+    font-family: "StratosSkyeng";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("./assets/fonts/stratosskyengweb-regular.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "StratosSkyeng";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("./assets/fonts/stratosskyengweb-regular.woff") format("woff");
+  }
+
+  .button {
+    background-color: #7AC100;
+    border-radius: 12px;
+    width: 246px;
+    height: 50px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 24px;
+  }
