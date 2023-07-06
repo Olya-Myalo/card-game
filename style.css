@@ -43,23 +43,30 @@ body {
     text-align: center;
   }
 
-  .buttons {
+  .radio-toolbar {
     display: flex;
     gap: 32px;
   }
-
-  .buttons_number {
-    background-color: #FFFFFF rgba(255, 255, 255, 1) hsla(0, 0%, 100%, 1);
+  .radio-toolbar input[type="radio"] {
+    display: none;
+  }
+  
+  .radio-toolbar label {
+    background-color: #FFFFFF;
+    color: #0080C1;
     border: none;
     width: 98px;
     height: 98px;
-    color: #0080C1;
     border-radius: 12px;
-    padding: 15px 15x;
     text-align: center;
     font-size: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
   }
-  .buttons_number:hover {
+  
+  .radio-toolbar label:hover {
     background-color: #7AC100;
     border: 1px solid #d0ffb7;
   }
