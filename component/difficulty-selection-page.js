@@ -1,3 +1,7 @@
+import { renderPageFirstLevelDifficulty } from "./page-first-leve-difficulty.js";
+import { renderPageSecondLevelDifficulty } from "./page-second-level-difficulty.js";
+import { renderPageThirdLevelDifficulty } from "./page-third-level-difficulty.js";
+
 export function renderDifficultySelectionPage() {
     const appHtml = `
     <div class="basic">
@@ -30,11 +34,11 @@ export function renderDifficultySelectionPage() {
       event.preventDefault();
     
       if (oneLevel.checked) {
-        alert("Легкая игра");
+        renderPageFirstLevelDifficulty();
       } else if (twoLevel.checked) {
-        alert("Сложная игра");
+        renderPageSecondLevelDifficulty();
       } else if (threeLevel.checked) {
-        alert("Очень сложная игра");
+        renderPageThirdLevelDifficulty();
       }
     });
   }
