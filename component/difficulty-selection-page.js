@@ -1,4 +1,4 @@
-import { renderPageFirstLevelDifficulty } from "./page-first-leve-difficulty.js";
+import { renderPageFirstLevelDifficulty } from "./page-first-level-difficulty.js";
 import { renderPageSecondLevelDifficulty } from "./page-second-level-difficulty.js";
 import { renderPageThirdLevelDifficulty } from "./page-third-level-difficulty.js";
 

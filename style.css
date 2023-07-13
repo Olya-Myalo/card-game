@@ -88,3 +88,52 @@ body {
     text-align: center;
     font-size: 24px;
   }
+  .page-maps {
+    
+  }
+  .page_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .time {
+
+  }
+  .time-figure {
+    color: #FFFFFF;
+    font-size: 64px;
+  }
+  .time-value {
+    height: 32px;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 65px;
+    font-size: 16px;
+    color: #FFFFFF;
+  }
+  .maps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    width: 975px;
+    height: 577px;
+    padding-top: 48px;
+  }
+
+  .button-newgame {
+    background-color: #7AC100;
+    border: none;
+    border-radius: 12px;
+    width: 246px;
+    height: 50px;
+    color: white;
+    padding: 15px 15x;
+    text-align: center;
+    font-size: 24px;
+  }
+
+  .reverse_side:hover {
+    background: url(image/reverse_side.svg);
+  }
