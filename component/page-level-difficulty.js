@@ -1,19 +1,20 @@
-export function renderPageFirstLevelDifficulty () {
-    const appHtml = `
-    <div class="page-maps">
+
+export function renderPageLevelDifficulty(difficulty) {
+  const appHtml = `
+      <div class="page-maps">
         <div class="page_header">
-            <div class="time">
-                <div class="time-value">
-                    <p class="time-min">min</p>
-                    <p class="time-sec">sec</p>
-                </div>
-                    <div class="time-figure">00.00</div>
+          <div class="time">
+            <div class="time-value">
+              <p class="time-min">min</p>
+              <p class="time-sec">sec</p>
             </div>
-            <div>
-                <button class="button-newgame">Начать заново</button>
-            </div>
+            <div class="time-figure">00.00</div>
+          </div>
+          <div>
+            <button id="restart-button" class="button-newgame">Начать заново</button>
+          </div>
         </div>
-            <div class="maps">
+        <div class="cards">
                 <div class="reverse_side">
                 <img src="image/ace_of_spades.svg" alt="Туз пики">
                 </div>
@@ -123,9 +124,9 @@ export function renderPageFirstLevelDifficulty () {
                 <div>
                     <img src="image/six_crosses.svg" class="reverse_side" alt="6 крести">
                 </div>
-            </div>
-    </div>
-    `;
-  
-    app.innerHTML = appHtml;
+                `
+
+                app.innerHTML = appHtml;
+
+
 }

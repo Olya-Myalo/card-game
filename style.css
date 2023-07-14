@@ -112,7 +112,7 @@ body {
     font-size: 16px;
     color: #FFFFFF;
   }
-  .maps {
+  .cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -120,6 +120,29 @@ body {
     width: 975px;
     height: 577px;
     padding-top: 48px;
+  }
+
+  .card__front, .card__back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+  
+  .card__front {
+    transform: rotateY(0deg);
+  }
+  
+  .card__back {
+    transform: rotateY(180deg);
+  }
+  
+  .card.flipped .card__front {
+    transform: rotateY(-180deg);
+  }
+  
+  .card.flipped .card__back {
+    transform: rotateY(0deg);
   }
 
   .button-newgame {
@@ -132,8 +155,4 @@ body {
     padding: 15px 15x;
     text-align: center;
     font-size: 24px;
-  }
-
-  .reverse_side:hover {
-    background: url(image/reverse_side.svg);
   }
