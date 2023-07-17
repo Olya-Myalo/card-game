@@ -88,17 +88,13 @@ body {
     text-align: center;
     font-size: 24px;
   }
-  .page-maps {
-    
-  }
+
   .page_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  .time {
 
-  }
   .time-figure {
     color: #FFFFFF;
     font-size: 64px;
