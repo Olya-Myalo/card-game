@@ -1,0 +1,30 @@
+{
+  "name": "card-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write ./component/",
+    "lint:js": "eslint ./component/**/*.js",
+    "lint:css": "stylelint ./component/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Olya-Myalo/card-game.git"
+  },
+  "author": "Olya-Myalo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Olya-Myalo/card-game/issues"
+  },
+  "homepage": "https://github.com/Olya-Myalo/card-game#readme",
+  "devDependencies": {
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.0",
+    "stylelint": "^15.10.1",
+    "stylelint-prettier": "^4.0.0"
+  }
+}
