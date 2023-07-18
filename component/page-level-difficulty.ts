@@ -27,12 +27,12 @@ export function renderPageLevelDifficulty(difficulty: string) {
   app.innerHTML = appHtml;
 
   const cardElements: NodeListOf<Element> = document.querySelectorAll(".card");
-cardElements.forEach((card: Element) => {
+  cardElements.forEach((card: Element) => {
   card.addEventListener("click", flipCard as EventListener);
 });
 
-  let memoryTimeoutId: NodeJS.Timeout;
-memoryTimeoutId = setTimeout(() => {
+let memoryTimeoutId: any =[];
+  memoryTimeoutId = setTimeout(() => {
   cardElements.forEach((card) => {
     card.classList.remove("flipped");
   }, 5000);
@@ -119,7 +119,7 @@ function getNumCards(difficulty: string) {
   }
 }
 
-function flipCard(event: MouseEvent): void {
+function flipCard(event: any) {
   const currentCard = event.currentTarget as HTMLDivElement;
 
   if (

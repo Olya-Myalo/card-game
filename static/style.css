@@ -152,10 +152,6 @@ body {
     font-size: 24px;
   }
 
-  .final {
-    background-image: url(static/image/fon.png);
-  }
-
   .final-form {
     background-color: #C2F5FF;
     border-radius: 12px;
@@ -190,7 +186,9 @@ body {
   }
 
   .darken {
-    background-image: url(static/image/fon3.png);
+    background: url("/static/image/fon.png");
+    background-repeat: no-repeat;
+    background-size: 1350px 650px;
     background-blend-mode: multiply;
     background-color: rgba(55, 5, 172, 0.836)
   }
