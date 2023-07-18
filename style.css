@@ -151,3 +151,46 @@ body {
     text-align: center;
     font-size: 24px;
   }
+
+  .final {
+    background-image: url(image/fon.png);
+  }
+
+  .final-form {
+    background-color: #C2F5FF;
+    border-radius: 12px;
+    width: 480px;
+    height: 459px;
+    margin-top: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .final-form-title {
+    margin-bottom: 10px;
+    margin-top: 5px;
+    font-size: 40px;
+    color:#004980;
+    text-align: center;
+  }
+
+  .total-time-value {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 24px;
+    color: black;
+  }
+
+  .total-time-figure {
+    margin-bottom: 20px;
+    font-size: 64px;
+    color: black;
+  }
+
+  .darken {
+    background-image: url(image/fon3.png);
+    background-blend-mode: multiply;
+    background-color: rgba(55, 5, 172, 0.836)
+  }
