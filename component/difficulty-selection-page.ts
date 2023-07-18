@@ -1,8 +1,8 @@
-import { renderPageLevelDifficulty } from "./page-level-difficulty.js";
+import { renderPageLevelDifficulty } from "./page-level-difficulty";
 
 export function renderDifficultySelectionPage() {
-  const app = document.querySelector("#app");
-  const appHtml = `<div class="basic">
+  const app: HTMLElement = document.getElementById("app")!;
+  const appHtml: string = `<div class="basic">
         <form class="form">
             <p class="title">Выберите сложность</p>
             <div class="radio-toolbar">
@@ -30,7 +30,7 @@ export function renderDifficultySelectionPage() {
     '.radio-toolbar input[name="difficulty"]',
   );
 
-  const startButton = document.querySelector("#start-button");
+  const startButton: HTMLButtonElement = document.querySelector("#start-button")!;
 
   function updateNumCards() {
     switch (gameData.difficulty) {
@@ -48,7 +48,8 @@ export function renderDifficultySelectionPage() {
 
   difficultyInputs.forEach((input) => {
     input.addEventListener("change", () => {
-      gameData.difficulty = input.value;
+      const value = (input as HTMLInputElement).value;
+      gameData.difficulty = value;
       updateNumCards();
     });
   });
@@ -57,7 +58,7 @@ export function renderDifficultySelectionPage() {
     startGame(gameData.difficulty);
   });
 
-  function startGame(difficulty) {
+  function startGame(difficulty: string) {
     renderPageLevelDifficulty(difficulty);
   }
 }

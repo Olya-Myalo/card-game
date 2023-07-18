@@ -1,10 +1,10 @@
-import { cards } from "./array-сards.js";
+import { cards } from "./array-сards";
 
-export function renderPageLevelDifficulty(difficulty) {
+export function renderPageLevelDifficulty(difficulty: string) {
   const shuffledCards = shuffle([...cards, ...cards]);
-  const app = document.querySelector("#app");
 
-  const appHtml = `
+  const app: HTMLElement = document.getElementById("app")!;
+  const appHtml: string =  `
       <div class="page-maps">
         <div class="page_header">
           <div class="time">
@@ -26,17 +26,17 @@ export function renderPageLevelDifficulty(difficulty) {
 
   app.innerHTML = appHtml;
 
-  const cardElements = document.querySelectorAll(".card");
-  cardElements.forEach((card) => {
-    card.addEventListener("click", flipCard);
-  });
+  const cardElements: NodeListOf<Element> = document.querySelectorAll(".card");
+cardElements.forEach((card: Element) => {
+  card.addEventListener("click", flipCard as EventListener);
+});
 
-  let memoryTimeoutId;
-  memoryTimeoutId = setTimeout(() => {
-    cardElements.forEach((card) => {
-      card.classList.remove("flipped");
-    });
+  let memoryTimeoutId: NodeJS.Timeout;
+memoryTimeoutId = setTimeout(() => {
+  cardElements.forEach((card) => {
+    card.classList.remove("flipped");
   }, 5000);
+});
 
   cardElements.forEach((card) => {
     card.classList.add("flipped");
@@ -53,10 +53,10 @@ export function renderPageLevelDifficulty(difficulty) {
     const formattedTime = `${String(minutes).padStart(2, "0")}:${String(
       seconds,
     ).padStart(2, "0")}`;
-    timerValue.textContent = formattedTime;
+    (timerValue as HTMLElement).textContent = formattedTime;
   }, 1000);
 
-  const restartButton = document.querySelector("#restart-button");
+  const restartButton: HTMLButtonElement = document.querySelector("#restart-button")!;
   restartButton.addEventListener("click", () => {
     clearInterval(timerInterval);
     clearTimeout(memoryTimeoutId);
@@ -66,7 +66,7 @@ export function renderPageLevelDifficulty(difficulty) {
     renderPageLevelDifficulty(difficulty);
   });
 
-  function renderCards(difficulty, cards) {
+  function renderCards(difficulty: string, cards: any) {
     const numCards = getNumCards(difficulty) * 2;
     const selectedCards = cards.slice(0, Math.floor(numCards / 2));
     const duplicatedCards = [...selectedCards, ...selectedCards];
@@ -90,7 +90,7 @@ export function renderPageLevelDifficulty(difficulty) {
   }
 }
 
-function shuffle(array) {
+function shuffle(array: any) {
   let currentIndex = array.length,
     randomIndex;
 
@@ -106,7 +106,7 @@ function shuffle(array) {
   return array;
 }
 
-function getNumCards(difficulty) {
+function getNumCards(difficulty: string) {
   switch (difficulty) {
     case "easy":
       return 6;
@@ -119,8 +119,8 @@ function getNumCards(difficulty) {
   }
 }
 
-function flipCard(event) {
-  const currentCard = event.currentTarget;
+function flipCard(event: MouseEvent): void {
+  const currentCard = event.currentTarget as HTMLDivElement;
 
   if (
     currentCard.classList.contains("flipped") ||
@@ -134,8 +134,8 @@ function flipCard(event) {
   const flippedCards = document.querySelectorAll(".flipped");
 
   if (flippedCards.length === 2) {
-    const flippedCard1 = flippedCards[0];
-    const flippedCard2 = flippedCards[1];
+    const flippedCard1 = flippedCards[0] as HTMLDivElement;
+    const flippedCard2 = flippedCards[1] as HTMLDivElement;
 
     if (flippedCard1.dataset.cardName === flippedCard2.dataset.cardName) {
       alert("Вы победили!");

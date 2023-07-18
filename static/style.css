@@ -12,7 +12,7 @@ body {
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("./fonts/stratosskyengweb-regular.woff2") format("woff2");
+    src: url("/static/fonts/stratosskyengweb-regular.woff2") format("woff2");
   }
 
   @font-face {
@@ -20,7 +20,7 @@ body {
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("./fonts/stratosskyengweb-regular.woff") format("woff");
+    src: url("/static/fonts/stratosskyengweb-regular.woff") format("woff");
   }
 
   .basic {
@@ -153,7 +153,7 @@ body {
   }
 
   .final {
-    background-image: url(image/fon.png);
+    background-image: url(static/image/fon.png);
   }
 
   .final-form {
@@ -190,7 +190,7 @@ body {
   }
 
   .darken {
-    background-image: url(image/fon3.png);
+    background-image: url(static/image/fon3.png);
     background-blend-mode: multiply;
     background-color: rgba(55, 5, 172, 0.836)
   }

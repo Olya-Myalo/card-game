@@ -1,9 +1,8 @@
 export function renderfinalPage() {
   let body = document.getElementsByTagName("body")[0];
   body.classList.add("darken");
-  const app = document.querySelector("#app");
-
-  const appHtml = `<div class="final">
+  const app: HTMLElement = document.getElementById("app")!;
+  const appHtml: string =  `<div class="final">
         <form class="final-form">
             <div>
                 <img src="image/victory.svg" alt="победа">

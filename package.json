@@ -9,7 +9,8 @@
     "lint:js": "eslint ./component/**/*.js",
     "lint:css": "stylelint ./component/**/*.js",
     "build": "set NODE_ENV=production && webpack",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "lint:ts": "tsc ––noEmit"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,9 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
-    "@typescript-eslint/parser": "^6.1.0"
+    "@typescript-eslint/parser": "^6.1.0",
+    "save-dev": "^0.0.1-security",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.1.6"
   }
 }
