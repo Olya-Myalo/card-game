@@ -30,7 +30,8 @@ export function renderDifficultySelectionPage() {
     '.radio-toolbar input[name="difficulty"]',
   );
 
-  const startButton: HTMLButtonElement = document.querySelector("#start-button")!;
+  const startButton: HTMLButtonElement =
+    document.querySelector("#start-button")!;
 
   function updateNumCards() {
     switch (gameData.difficulty) {

@@ -4,7 +4,7 @@ export function renderPageLevelDifficulty(difficulty: string) {
   const shuffledCards = shuffle([...cards, ...cards]);
 
   const app: HTMLElement = document.getElementById("app")!;
-  const appHtml: string =  `
+  const appHtml: string = `
       <div class="page-maps">
         <div class="page_header">
           <div class="time">
@@ -26,20 +26,20 @@ export function renderPageLevelDifficulty(difficulty: string) {
 
   app.innerHTML = appHtml;
 
-  const cardElements: NodeListOf<Element> = document.querySelectorAll(".card");
+  const cardElements = document.querySelectorAll('.card');
   cardElements.forEach((card: Element) => {
-  card.addEventListener("click", flipCard as EventListener);
-});
+    card.addEventListener("click", flipCard);
+  });
 
-let memoryTimeoutId: any =[];
+  let memoryTimeoutId: any = [];
   memoryTimeoutId = setTimeout(() => {
-  cardElements.forEach((card) => {
-    card.classList.remove("flipped");
-  }, 5000);
-});
+    cardElements.forEach((card) => {
+      card.classList.remove('flipped');
+    }, 5000);
+  });
 
   cardElements.forEach((card) => {
-    card.classList.add("flipped");
+    card.classList.add('flipped');
   });
 
   const startTime = new Date().getTime();
@@ -56,12 +56,13 @@ let memoryTimeoutId: any =[];
     (timerValue as HTMLElement).textContent = formattedTime;
   }, 1000);
 
-  const restartButton: HTMLButtonElement = document.querySelector("#restart-button")!;
+  const restartButton: HTMLButtonElement =
+    document.querySelector("#restart-button")!;
   restartButton.addEventListener("click", () => {
     clearInterval(timerInterval);
     clearTimeout(memoryTimeoutId);
     cardElements.forEach((card) => {
-      card.classList.remove("flipped");
+      card.classList.remove('flipped');
     });
     renderPageLevelDifficulty(difficulty);
   });
@@ -123,29 +124,122 @@ function flipCard(event: any) {
   const currentCard = event.currentTarget as HTMLDivElement;
 
   if (
-    currentCard.classList.contains("flipped") ||
-    document.querySelectorAll(".flipped").length === 2
+    currentCard.classList.contains('flipped') ||
+    document.querySelectorAll('.flipped').length === 2
   ) {
     return;
   }
 
-  currentCard.classList.toggle("flipped");
+  currentCard.classList.toggle('flipped');
 
-  const flippedCards = document.querySelectorAll(".flipped");
+  const flippedCards = document.querySelectorAll('.flipped');
 
   if (flippedCards.length === 2) {
     const flippedCard1 = flippedCards[0] as HTMLDivElement;
     const flippedCard2 = flippedCards[1] as HTMLDivElement;
 
-    if (flippedCard1.dataset.cardName === flippedCard2.dataset.cardName) {
-      alert("Вы победили!");
+    if (flippedCard1.dataset.cardId === flippedCard2.dataset.cardId) {
+      renderfinalPage();
     } else {
       setTimeout(() => {
         flippedCards.forEach((card) => {
-          card.classList.add("flipped");
+          card.classList.add('flipped');
         });
         alert("Вы проиграли!");
       }, 1000);
     }
   }
+  function renderfinalPage() {
+    const isPageVictory = true;
+    let body = document.getElementsByTagName("body")[0];
+    body.classList.add("darken");
+    const app: HTMLElement = document.getElementById("app")!;
+    const appHtml: string = `<div class="final">
+          <form class="final-form">
+              <div> ${
+                isPageVictory
+                  ? '<img src="static/image/victory.svg" alt="победа">'
+                  : '<img src="static/image/dead.svg" alt="проигрыш">'
+              }
+              </div>
+              <p class="final-form-title">${
+                isPageVictory ? "Вы выиграли!" : "Вы проиграли!"
+              }</p>
+              <p class="total-time-value">Затраченное время</p>
+              <div class="total-time-figure">00.00</div>
+            <div>
+              <button id="start-button" type="submit" class="button">Играть снова</button>
+          </form>
+      </div>`;
+  
+    app.innerHTML = appHtml;
+  }
 }
+
+// let hasFlippedCard = false;
+// let lockBoard = false;
+// let firstCard, secondCard;
+
+// function flipCard() {
+//     if (lockBoard) return;
+//     if (this === firstCard) return;
+//     this.classList.add('flip');
+
+//     if (!hasFlippedCard) {
+//         hasFlippedCard = true;
+//         firstCard = this;
+//         return;
+//     }
+
+//     secondCard = this;
+//     checkForMatch();
+//     if (document.querySelectorAll('.memory-card').length == document.querySelectorAll('.memory-card.flip').length) {
+//       console.log("game over");
+//       document.querySelectorAll('.memory-card.flip').forEach(c => c.classList.remove('flip'));
+//     }
+// }
+// function checkForMatch() {
+
+//     let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
+//     isMatch ? disableCards() : unflipCards();
+
+// }
+// function disableCards() {
+
+//     firstCard.removeEventListener('click', flipCard);
+//     secondCard.removeEventListener('click', flipCard);
+
+//     resetBoard();
+
+// }
+// function unflipCards() {
+
+//     lockBoard = true;
+
+//     setTimeout(() => {
+//         firstCard.classList.remove('flip');
+//         secondCard.classList.remove('flip');
+
+//         resetBoard();
+
+//     }, 1500);
+
+// }
+
+// function resetBoard() {
+
+//     [hasFlippedCard, lockBoard] = [false, false];
+//     [firstCard, secondCard] = [null, null];
+
+// }
+
+// (function shuffle() {
+
+//     cards.forEach(card => {
+//         let ramdomPos = Math.floor(Math.random() * 12);
+//         card.style.order = ramdomPos;
+//     });
+
+// })();
+
+// cards.forEach(card => card.addEventListener('click', flipCard));
