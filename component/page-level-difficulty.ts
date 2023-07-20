@@ -1,11 +1,10 @@
 import { cards } from "./array-сards";
 
-
 export function renderPageLevelDifficulty(difficulty: string) {
   const shuffledCards = shuffle([...cards, ...cards]);
 
   const app: HTMLElement = document.getElementById("app")!;
-  const appHtml: any = `
+  const appHtml: string = `
       <div class="page-maps">
         <div class="page_header">
           <div class="time">
@@ -27,24 +26,24 @@ export function renderPageLevelDifficulty(difficulty: string) {
 
   app.innerHTML = appHtml;
 
-  const cardElements = document.querySelectorAll('.card');
+  const cardElements = document.querySelectorAll(".card");
   cardElements.forEach((card: Element) => {
     card.addEventListener("click", (event) => flipCard(event, difficulty));
   });
 
   cardElements.forEach((card) => {
-    card.classList.remove('flipped')
-})
+    card.classList.remove("flipped");
+  });
 
   let memoryTimeoutId: any;
   memoryTimeoutId = setTimeout(() => {
     cardElements.forEach((card) => {
-      card.classList.add('flipped');
+      card.classList.add("flipped");
     });
   }, 5000);
 
   const startTime = new Date().getTime();
- 
+
   const timerValue = document.querySelector(".time-figure");
   const timerInterval = setInterval(() => {
     const currentTime = new Date().getTime();
@@ -63,12 +62,12 @@ export function renderPageLevelDifficulty(difficulty: string) {
     clearInterval(timerInterval);
     clearTimeout(memoryTimeoutId);
     cardElements.forEach((card) => {
-      card.classList.add('flipped');
+      card.classList.add("flipped");
     });
     renderPageLevelDifficulty(difficulty);
   });
 
-  function renderCards(difficulty: string, cards: any) {
+  function renderCards(difficulty: string, cards: Array<string>) {
     const numCards = getNumCards(difficulty) * 2;
     const selectedCards = cards.slice(0, Math.floor(numCards / 2));
     const duplicatedCards = [...selectedCards, ...selectedCards];
@@ -92,7 +91,7 @@ export function renderPageLevelDifficulty(difficulty: string) {
   }
 }
 
-function shuffle(array: any) {
+function shuffle(array: Array<any>) {
   let currentIndex = array.length,
     randomIndex;
 
@@ -123,18 +122,18 @@ function getNumCards(difficulty: string) {
 
 let flippedFirstCardId: string = "";
 let cardsCount: number = 0;
-function flipCard(event: any, difficulty: string) {
+function flipCard(event: Event, difficulty: string) {
   const currentCard = event.currentTarget as HTMLDivElement;
   const cardId = currentCard.dataset.id as string;
   let totalTime;
-  if (!currentCard.classList.contains('flipped')) {
+  if (!currentCard.classList.contains("flipped")) {
     return;
   }
-  currentCard.classList.remove('flipped');
+  currentCard.classList.remove("flipped");
   cardsCount += 1;
   const totalCards = getNumCards(difficulty) * 2;
-    // клик на первую карту, сохраняет ее
-  if (flippedFirstCardId === "") { 
+  // клик на первую карту, сохраняет ее
+  if (flippedFirstCardId === "") {
     flippedFirstCardId = cardId;
   } else {
     if (flippedFirstCardId === cardId) {
@@ -146,9 +145,8 @@ function flipCard(event: any, difficulty: string) {
       renderfinalPage(totalTime, false);
     }
   }
-  
-  // let isPageVictory: boolean = true;
-  function renderfinalPage(totalTime: any, isPageVictory: any) {
+
+  function renderfinalPage(totalTime: any, isPageVictory: boolean) {
     let timerInterval;
     totalTime = clearInterval(timerInterval);
     let body = document.getElementsByTagName("body")[0];
@@ -171,7 +169,6 @@ function flipCard(event: any, difficulty: string) {
           <button id="start-button" type="submit" class="button">Играть снова</button>
       </form>
     </div>`;
-  
     app.innerHTML = appHtml;
   }
 }

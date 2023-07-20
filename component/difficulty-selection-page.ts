@@ -2,7 +2,7 @@ import { renderPageLevelDifficulty } from "./page-level-difficulty";
 
 export function renderDifficultySelectionPage() {
   const app: HTMLElement = document.getElementById("app")!;
-  const appHtml: any = `<div class="basic">
+  const appHtml: string = `<div class="basic">
         <form class="form">
             <p class="title">Выберите сложность</p>
             <div class="radio-toolbar">
