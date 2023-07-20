@@ -1,10 +1,11 @@
 import { cards } from "./array-сards";
 
+
 export function renderPageLevelDifficulty(difficulty: string) {
   const shuffledCards = shuffle([...cards, ...cards]);
 
   const app: HTMLElement = document.getElementById("app")!;
-  const appHtml: string = `
+  const appHtml: any = `
       <div class="page-maps">
         <div class="page_header">
           <div class="time">
@@ -28,22 +29,22 @@ export function renderPageLevelDifficulty(difficulty: string) {
 
   const cardElements = document.querySelectorAll('.card');
   cardElements.forEach((card: Element) => {
-    card.addEventListener("click", flipCard);
-  });
-
-  let memoryTimeoutId: any = [];
-  memoryTimeoutId = setTimeout(() => {
-    cardElements.forEach((card) => {
-      card.classList.remove('flipped');
-    }, 5000);
+    card.addEventListener("click", (event) => flipCard(event, difficulty));
   });
 
   cardElements.forEach((card) => {
-    card.classList.add('flipped');
-  });
+    card.classList.remove('flipped')
+})
+
+  let memoryTimeoutId: any;
+  memoryTimeoutId = setTimeout(() => {
+    cardElements.forEach((card) => {
+      card.classList.add('flipped');
+    });
+  }, 5000);
 
   const startTime = new Date().getTime();
-
+ 
   const timerValue = document.querySelector(".time-figure");
   const timerInterval = setInterval(() => {
     const currentTime = new Date().getTime();
@@ -62,7 +63,7 @@ export function renderPageLevelDifficulty(difficulty: string) {
     clearInterval(timerInterval);
     clearTimeout(memoryTimeoutId);
     cardElements.forEach((card) => {
-      card.classList.remove('flipped');
+      card.classList.add('flipped');
     });
     renderPageLevelDifficulty(difficulty);
   });
@@ -76,7 +77,7 @@ export function renderPageLevelDifficulty(difficulty: string) {
     for (let i = 0; i < shuffledCards.length; i++) {
       const card = shuffledCards[i];
       const cardHtml = `
-    <div class="card">
+    <div data-id="${card.id}" class="card">
       <div class="card__back">
         <img src="${card.front}" alt="">
       </div>
@@ -120,59 +121,57 @@ function getNumCards(difficulty: string) {
   }
 }
 
-function flipCard(event: any) {
+let flippedFirstCardId: string = "";
+let cardsCount: number = 0;
+function flipCard(event: any, difficulty: string) {
   const currentCard = event.currentTarget as HTMLDivElement;
-
-  if (
-    currentCard.classList.contains('flipped') ||
-    document.querySelectorAll('.flipped').length === 2
-  ) {
+  const cardId = currentCard.dataset.id as string;
+  let totalTime;
+  if (!currentCard.classList.contains('flipped')) {
     return;
   }
-
-  currentCard.classList.toggle('flipped');
-
-  const flippedCards = document.querySelectorAll('.flipped');
-
-  if (flippedCards.length === 2) {
-    const flippedCard1 = flippedCards[0] as HTMLDivElement;
-    const flippedCard2 = flippedCards[1] as HTMLDivElement;
-
-    if (flippedCard1.dataset.cardId === flippedCard2.dataset.cardId) {
-      renderfinalPage();
+  currentCard.classList.remove('flipped');
+  cardsCount += 1;
+  const totalCards = getNumCards(difficulty) * 2;
+    // клик на первую карту, сохраняет ее
+  if (flippedFirstCardId === "") { 
+    flippedFirstCardId = cardId;
+  } else {
+    if (flippedFirstCardId === cardId) {
+      flippedFirstCardId = "";
+      if (cardsCount === totalCards) {
+        renderfinalPage(totalTime, true);
+      }
     } else {
-      setTimeout(() => {
-        flippedCards.forEach((card) => {
-          card.classList.add('flipped');
-        });
-        alert("Вы проиграли!");
-      }, 1000);
+      renderfinalPage(totalTime, false);
     }
   }
-  function renderfinalPage() {
-    const isPageVictory = true;
+  
+  // let isPageVictory: boolean = true;
+  function renderfinalPage(totalTime: any, isPageVictory: any) {
+    let timerInterval;
+    totalTime = clearInterval(timerInterval);
     let body = document.getElementsByTagName("body")[0];
     body.classList.add("darken");
     const app: HTMLElement = document.getElementById("app")!;
     const appHtml: string = `<div class="final">
-          <form class="final-form">
-              <div> ${
-                isPageVictory
-                  ? '<img src="static/image/victory.svg" alt="победа">'
-                  : '<img src="static/image/dead.svg" alt="проигрыш">'
-              }
-              </div>
-              <p class="final-form-title">${
-                isPageVictory ? "Вы выиграли!" : "Вы проиграли!"
-              }</p>
-              <p class="total-time-value">Затраченное время</p>
-              <div class="total-time-figure">00.00</div>
-            <div>
-              <button id="start-button" type="submit" class="button">Играть снова</button>
-          </form>
-      </div>`;
+      <form class="final-form">
+          <div> ${
+            isPageVictory
+              ? '<img src="static/image/victory.svg" alt="победа">'
+              : '<img src="static/image/dead.svg" alt="проигрыш">'
+          }
+          </div>
+          <p class="final-form-title">${
+            isPageVictory ? "Вы выиграли!" : "Вы проиграли!"
+          }</p>
+          <p class="total-time-value">Затраченное время</p>
+          <div class="total-time-figure">${totalTime}</div>
+        <div>
+          <button id="start-button" type="submit" class="button">Играть снова</button>
+      </form>
+    </div>`;
   
     app.innerHTML = appHtml;
   }
 }
-

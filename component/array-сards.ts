@@ -80,7 +80,7 @@ export const cards = [
     id: 16,
   },
   {
-    front: "/static/image/seven_hearts.svg,",
+    front: "/static/image/seven_hearts.svg",
     back: "/static/image/reverse_side.svg",
     id: 17,
   },
