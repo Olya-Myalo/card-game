@@ -28,15 +28,16 @@ export function renderPageLevelDifficulty(difficulty: string) {
 
   const cardElements = document.querySelectorAll(".card");
   cardElements.forEach((card: Element) => {
-    card.addEventListener("click", (event) => flipCard(event, difficulty));
+    card.addEventListener("click", (event) =>
+      flipCard(event, difficulty, timerInterval),
+    );
   });
 
   cardElements.forEach((card) => {
     card.classList.remove("flipped");
   });
 
-  let memoryTimeoutId: any;
-  memoryTimeoutId = setTimeout(() => {
+  let memoryTimeoutId = setTimeout(() => {
     cardElements.forEach((card) => {
       card.classList.add("flipped");
     });
@@ -122,10 +123,13 @@ function getNumCards(difficulty: string) {
 
 let flippedFirstCardId: string = "";
 let cardsCount: number = 0;
-function flipCard(event: Event, difficulty: string) {
+function flipCard(
+  event: Event,
+  difficulty: string,
+  timerInterval: ReturnType<typeof setInterval>,
+) {
   const currentCard = event.currentTarget as HTMLDivElement;
   const cardId = currentCard.dataset.id as string;
-  let totalTime;
   if (!currentCard.classList.contains("flipped")) {
     return;
   }
@@ -139,16 +143,18 @@ function flipCard(event: Event, difficulty: string) {
     if (flippedFirstCardId === cardId) {
       flippedFirstCardId = "";
       if (cardsCount === totalCards) {
-        renderfinalPage(totalTime, true);
+        let formattedTime = document.querySelector(".time-figure")?.textContent;
+        clearInterval(timerInterval);
+        renderfinalPage(true, formattedTime);
       }
     } else {
-      renderfinalPage(totalTime, false);
+      let formattedTime = document.querySelector(".time-figure")?.textContent;
+      clearInterval(timerInterval);
+      renderfinalPage(false, formattedTime);
     }
   }
 
-  function renderfinalPage(totalTime: any, isPageVictory: boolean) {
-    let timerInterval;
-    totalTime = clearInterval(timerInterval);
+  function renderfinalPage(isPageVictory: boolean, formattedTime: any) {
     let body = document.getElementsByTagName("body")[0];
     body.classList.add("darken");
     const app: HTMLElement = document.getElementById("app")!;
@@ -164,7 +170,7 @@ function flipCard(event: Event, difficulty: string) {
             isPageVictory ? "Вы выиграли!" : "Вы проиграли!"
           }</p>
           <p class="total-time-value">Затраченное время</p>
-          <div class="total-time-figure">${totalTime}</div>
+          <div class="total-time-figure">${formattedTime}</div>
         <div>
           <button id="start-button" type="submit" class="button">Играть снова</button>
       </form>
