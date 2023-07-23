@@ -6,16 +6,16 @@ export function renderPageLevelDifficulty(difficulty: string) {
   const app: HTMLElement = document.getElementById("app")!;
   const appHtml: string = `
       <div class="page-maps">
-        <div class="page_header">
-          <div class="time">
-            <div class="time-value">
-              <p class="time-min">min</p>
-              <p class="time-sec">sec</p>
+        <div class="page-maps_header">
+          <div class="page-maps_time">
+            <div class="page-maps_time-value">
+              <p class="page-maps_time-min">min</p>
+              <p class="page-maps_time-sec">sec</p>
             </div>
-            <div class="time-figure">00.00</div>
+            <div class="page-maps_time-figure">00.00</div>
           </div>
           <div>
-            <button id="restart-button" class="button-newgame">Начать заново</button>
+            <button id="restart-button" class="page-maps_button-newgame">Начать заново</button>
           </div>
         </div>
         <div class="cards">
@@ -45,7 +45,7 @@ export function renderPageLevelDifficulty(difficulty: string) {
 
   const startTime = new Date().getTime();
 
-  const timerValue = document.querySelector(".time-figure");
+  const timerValue = document.querySelector(".page-maps_time-figure");
   const timerInterval = setInterval(() => {
     const currentTime = new Date().getTime();
     const elapsedTime = currentTime - startTime;
@@ -67,8 +67,12 @@ export function renderPageLevelDifficulty(difficulty: string) {
     });
     renderPageLevelDifficulty(difficulty);
   });
-
-  function renderCards(difficulty: string, cards: Array<string>) {
+  interface Card {
+    id: number;
+    front: string;
+    back: string;
+  }
+  function renderCards(difficulty: string, cards: Array<Card>) {
     const numCards = getNumCards(difficulty) * 2;
     const selectedCards = cards.slice(0, Math.floor(numCards / 2));
     const duplicatedCards = [...selectedCards, ...selectedCards];
@@ -92,7 +96,7 @@ export function renderPageLevelDifficulty(difficulty: string) {
   }
 }
 
-function shuffle(array: Array<any>) {
+function shuffle<T>(array: Array<T>): Array<T> {
   let currentIndex = array.length,
     randomIndex;
 
@@ -143,34 +147,39 @@ function flipCard(
     if (flippedFirstCardId === cardId) {
       flippedFirstCardId = "";
       if (cardsCount === totalCards) {
-        let formattedTime = document.querySelector(".time-figure")?.textContent;
+        let formattedTime = document.querySelector(".page-maps_time-figure")
+          ?.textContent;
         clearInterval(timerInterval);
         renderfinalPage(true, formattedTime);
       }
     } else {
-      let formattedTime = document.querySelector(".time-figure")?.textContent;
+      let formattedTime = document.querySelector(".page-maps_time-figure")
+        ?.textContent;
       clearInterval(timerInterval);
       renderfinalPage(false, formattedTime);
     }
   }
 
-  function renderfinalPage(isPageVictory: boolean, formattedTime: any) {
+  function renderfinalPage(
+    isPageVictory: boolean,
+    formattedTime: string | null | undefined,
+  ) {
     let body = document.getElementsByTagName("body")[0];
     body.classList.add("darken");
     const app: HTMLElement = document.getElementById("app")!;
-    const appHtml: string = `<div class="final">
-      <form class="final-form">
+    const appHtml: string = `<div class="page-final">
+      <form class="page-final_form">
           <div> ${
             isPageVictory
               ? '<img src="static/image/victory.svg" alt="победа">'
               : '<img src="static/image/dead.svg" alt="проигрыш">'
           }
           </div>
-          <p class="final-form-title">${
+          <p class="page-final_title">${
             isPageVictory ? "Вы выиграли!" : "Вы проиграли!"
           }</p>
-          <p class="total-time-value">Затраченное время</p>
-          <div class="total-time-figure">${formattedTime}</div>
+          <p class="page-final_time-value">Затраченное время</p>
+          <div class="page-final_time-figure">${formattedTime}</div>
         <div>
           <button id="start-button" type="submit" class="button">Играть снова</button>
       </form>
