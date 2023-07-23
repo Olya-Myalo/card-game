@@ -1,203 +1,206 @@
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #004980;
-    font-family: StratosSkyeng;
-    display: flex;
-    justify-content: center;
-  }
-
-  @font-face {
-    font-family: "StratosSkyeng";
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url("/static/fonts/stratosskyengweb-regular.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "StratosSkyeng";
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url("/static/fonts/stratosskyengweb-regular.woff") format("woff");
-  }
-
-  .basic {
-    background-color: #C2F5FF;
-    border-radius: 12px;
-    width: 480px;
-    height: 459px;
-    margin-top: 75px;
+  margin: 0;
+  padding: 0;
+  background-color: #004980;
+  font-family: StratosSkyeng;
+  display: flex;
+  justify-content: center;
 }
 
-  .basic_form {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: 32px;
-  }
-  .basic_title {
-    width: 400px;
-    font-size: 40px;
-    color:#004980;
-    text-align: center;
-  }
-
-  .basic_radio-toolbar {
-    display: flex;
-    gap: 32px;
-  }
-  .basic_radio-toolbar input[type="radio"] {
-    display: none;
-  }
-  
-  .basic_radio-toolbar label {
-    background-color: #FFFFFF;
-    color: #0080C1;
-    border: none;
-    width: 98px;
-    height: 98px;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-  
-  .basic_radio-toolbar input[type="radio"]:checked+label {
-    background-color: #7AC100;
-    border: 1px solid #d0ffb7;
+@font-face {
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/static/fonts/stratosskyengweb-regular.woff2") format("woff2");
 }
-  .basic_radio-toolbar label:hover {
-    background-color: #7AC100;
-    border: 1px solid #d0ffb7;
-  }
+@font-face {
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/static/fonts/stratosskyengweb-regular.woff") format("woff");
+}
+.basic {
+  background-color: #C2F5FF;
+  border-radius: 12px;
+  width: 480px;
+  height: 459px;
+  margin-top: 75px;
+}
 
-  .button {
-    background-color: #7AC100;
-    border: none;
-    border-radius: 12px;
-    width: 246px;
-    height: 50px;
-    color: white;
-    padding: 15px 15x;
-    text-align: center;
-    font-size: 24px;
-  }
+.basic_form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 32px;
+}
 
-  .page-maps_header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.basic_title {
+  width: 400px;
+  font-size: 40px;
+  color: #004980;
+  text-align: center;
+}
 
-  .page-maps_time-figure {
-    color: #FFFFFF;
-    font-size: 64px;
-  }
-  .page-maps_time-value {
-    height: 32px;
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    gap: 65px;
-    font-size: 16px;
-    color: #FFFFFF;
-  }
-  .cards {
-    margin-top: 46px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.basic_radio-toolbar {
+  display: flex;
+  gap: 32px;
+}
+
+.basic_radio-toolbar input[type=radio] {
+  display: none;
+}
+
+.basic_radio-toolbar label {
+  background-color: #FFFFFF;
+  color: #0080C1;
+  border: none;
+  width: 98px;
+  height: 98px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.basic_radio-toolbar input[type=radio]:checked + label {
+  background-color: #7AC100;
+  border: 1px solid #d0ffb7;
+}
+
+.basic_radio-toolbar label:hover {
+  background-color: #7AC100;
+  border: 1px solid #d0ffb7;
+}
+
+.button {
+  background-color: #7AC100;
+  border: none;
+  border-radius: 12px;
+  width: 246px;
+  height: 50px;
+  color: white;
+  padding: 15px 15x;
+  text-align: center;
+  font-size: 24px;
+}
+
+.page-maps_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-maps_time-figure {
+  color: #FFFFFF;
+  font-size: 64px;
+}
+
+.page-maps_time-value {
+  height: 32px;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 65px;
+  font-size: 16px;
+  color: #FFFFFF;
+}
+
+.cards {
+  margin-top: 46px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .card {
-    width: 96px;
-    height: 135px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    margin: 10px;
-    perspective: 1000px;
-    cursor: pointer;
+  width: 96px;
+  height: 135px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin: 10px;
+  perspective: 1000px;
+  cursor: pointer;
 }
 
 .card__front,
 .card__back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
 }
 
 .card__front {
-    transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 .card__back {
-    transform: rotateY(0deg);
+  transform: rotateY(0deg);
 }
 
 .card.flipped .card__front {
-    transform: rotateY(0deg);
+  transform: rotateY(0deg);
 }
 
 .card.flipped .card__back {
-    transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
 }
 
-  .page-maps_button-newgame {
-    background-color: #7AC100;
-    border: none;
-    border-radius: 12px;
-    width: 246px;
-    height: 50px;
-    color: white;
-    padding: 15px 15x;
-    text-align: center;
-    font-size: 24px;
-  }
+.page-maps_button-newgame {
+  background-color: #7AC100;
+  border: none;
+  border-radius: 12px;
+  width: 246px;
+  height: 50px;
+  color: white;
+  padding: 15px 15x;
+  text-align: center;
+  font-size: 24px;
+}
 
-  .page-final_form {
-    background-color: #C2F5FF;
-    border-radius: 12px;
-    width: 480px;
-    height: 459px;
-    margin-top: 75px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+.page-final_form {
+  background-color: #C2F5FF;
+  border-radius: 12px;
+  width: 480px;
+  height: 459px;
+  margin-top: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-  .page-final_title {
-    margin-bottom: 10px;
-    margin-top: 5px;
-    font-size: 40px;
-    color:#004980;
-    text-align: center;
-  }
+.page-final_title {
+  margin-bottom: 10px;
+  margin-top: 5px;
+  font-size: 40px;
+  color: #004980;
+  text-align: center;
+}
 
-  .page-final_time-value {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    font-size: 24px;
-    color: black;
-  }
+.page-final_time-value {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 24px;
+  color: black;
+}
 
-  .page-final_time-figure {
-    margin-bottom: 20px;
-    font-size: 64px;
-    color: black;
-  }
+.page-final_time-figure {
+  margin-bottom: 20px;
+  font-size: 64px;
+  color: black;
+}
 
-  .darken {
-    background: url("/static/image/fon.png");
-    background-repeat: no-repeat;
-    background-size: 1350px 650px;
-    background-blend-mode: multiply;
-    background-color: rgba(55, 5, 172, 0.836)
-  }
+.darken {
+  background: url("/static/image/fon.png");
+  background-repeat: no-repeat;
+  background-size: 1350px 650px;
+  background-blend-mode: multiply;
+  background-color: rgba(55, 5, 172, 0.836);
+}/*# sourceMappingURL=style.css.map */
