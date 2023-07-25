@@ -6,10 +6,10 @@
   "scripts": {
     "format": "prettier --write ./component/",
     "lint:js": "eslint ./component/**/*.js",
-    "lint:css": "stylelint ./static/**/*.css",
+    "lint:css": "stylelint ./static/**/*.css/*.scss",
     "build": "set NODE_ENV=production && webpack",
     "start": "webpack-dev-server --open",
-    "lint:ts": "tsc ––noEmit",
+    "lint:ts": "eslint . --ext .ts",
     "prepare": "husky install",
     "lint": "npm run lint:ts && npm run lint:css",
     "test": "jest"
@@ -37,7 +37,8 @@
     "husky": "^8.0.3",
     "mini-css-extract-plugin": "^2.7.6",
     "prettier": "^3.0.0",
-    "stylelint": "^15.10.1",
+    "stylelint": "^15.10.2",
+    "stylelint-config-standard-scss": "^10.0.0",
     "stylelint-prettier": "^4.0.0",
     "typescript": "^5.1.6",
     "webpack": "^5.88.1",

@@ -1,3 +1,5 @@
 "extends":
-[ "stylelint-config-standard", "stylelint-prettier/recomended"]
+[ "stylelint-config-standard",
+  "stylelint-prettier/recomended"
+]
    
