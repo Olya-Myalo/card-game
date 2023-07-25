@@ -83,6 +83,10 @@ body {
   font-size: 24px;
 }
 
+.page-maps {
+  width: 1024px;
+  height: 724px;
+}
 .page-maps_header {
   display: flex;
   justify-content: space-between;
@@ -141,11 +145,9 @@ body {
 .card__back {
   transform: rotateY(0deg);
 }
-
 .card.flipped .card__front {
   transform: rotateY(0deg);
 }
-
 .card.flipped .card__back {
   transform: rotateY(-180deg);
 }
@@ -181,9 +183,10 @@ body {
 }
 
 .darken {
-  background: url("/static/image/fon.png");
+  background: url("/static/image/fon1.png");
   background-repeat: no-repeat;
-  background-size: 1350px 650px;
+  background-position: center;
+  background-size: 1024px 724px;
   background-blend-mode: multiply;
   background-color: rgba(55, 5, 172, 0.836);
 }/*# sourceMappingURL=style.css.map */
