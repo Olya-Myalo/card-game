@@ -7,10 +7,6 @@ const isProduction = process.env.NODE_ENV === "production";
 module.exports = {
   entry: "./index.ts",
   mode: isProduction ? "production" : "development",
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
-    parser: '@typescript-eslint/parser',
-    plugins: ['@typescript-eslint'],
-    root: true,
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",

@@ -4,8 +4,9 @@
         "es6": true,
         "node": true
     },
-    "extends": ["eslint:recommended", "prettier"],
-    "plugins": ["prettier"],
+    "extends": ["eslint:recommended", "prettier", "@typescript-eslint/recommended"],
+    "plugins": ["prettier", "@typescript-eslint"],
+    "root": true,
     "parser": "@typescript-eslint/parser",
     "parserOptions": { 
         "ecmaVersion": 2020,

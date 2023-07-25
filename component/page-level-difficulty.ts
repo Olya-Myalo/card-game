@@ -37,7 +37,7 @@ export function renderPageLevelDifficulty(difficulty: string) {
     card.classList.remove("flipped");
   });
 
-  let memoryTimeoutId = setTimeout(() => {
+  const memoryTimeoutId = setTimeout(() => {
     cardElements.forEach((card) => {
       card.classList.add("flipped");
     });
@@ -96,7 +96,7 @@ export function renderPageLevelDifficulty(difficulty: string) {
   }
 }
 
-function shuffle<T>(array: Array<T>): Array<T> {
+export function shuffle<T>(array: Array<T>): Array<T> {
   let currentIndex = array.length,
     randomIndex;
 
@@ -112,7 +112,7 @@ function shuffle<T>(array: Array<T>): Array<T> {
   return array;
 }
 
-function getNumCards(difficulty: string) {
+export function getNumCards(difficulty: string) {
   switch (difficulty) {
     case "easy":
       return 6;
@@ -147,24 +147,24 @@ function flipCard(
     if (flippedFirstCardId === cardId) {
       flippedFirstCardId = "";
       if (cardsCount === totalCards) {
-        let formattedTime = document.querySelector(".page-maps_time-figure")
+        const formattedTime = document.querySelector(".page-maps_time-figure")
           ?.textContent;
         clearInterval(timerInterval);
-        renderfinalPage(true, formattedTime);
+        renderFinalPage(true, formattedTime);
       }
     } else {
-      let formattedTime = document.querySelector(".page-maps_time-figure")
+      const formattedTime = document.querySelector(".page-maps_time-figure")
         ?.textContent;
       clearInterval(timerInterval);
-      renderfinalPage(false, formattedTime);
+      renderFinalPage(false, formattedTime);
     }
   }
 
-  function renderfinalPage(
+  function renderFinalPage(
     isPageVictory: boolean,
     formattedTime: string | null | undefined,
   ) {
-    let body = document.getElementsByTagName("body")[0];
+    const body = document.getElementsByTagName("body")[0];
     body.classList.add("darken");
     const app: HTMLElement = document.getElementById("app")!;
     const appHtml: string = `<div class="page-final">
