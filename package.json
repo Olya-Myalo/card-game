@@ -6,7 +6,7 @@
   "scripts": {
     "format": "prettier --write ./component/",
     "lint:js": "eslint ./component/**/*.js",
-    "lint:css": "stylelint ./static/**/*.css/*.scss",
+    "lint:css": "stylelint ./static/**/*.scss",
     "build": "set NODE_ENV=production && webpack",
     "start": "webpack-dev-server --open",
     "lint:ts": "eslint . --ext .ts",

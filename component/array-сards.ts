@@ -1,4 +1,4 @@
-export const cards: string = [
+export const cards = [
   {
     front: "/static/image/ace_of_spades.svg",
     back: "/static/image/reverse_side.svg",

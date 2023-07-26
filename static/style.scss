@@ -2,13 +2,13 @@ body {
   margin: 0;
   padding: 0;
   background-color: #004980;
-  font-family: StratosSkyeng;
+  font-family: StratosSkyeng, sans-serif;
   display: flex;
   justify-content: center;
 }
 
 @font-face {
-  font-family: "StratosSkyeng";
+  font-family: StratosSkyeng;
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -16,7 +16,7 @@ body {
 }
 
 @font-face {
-  font-family: "StratosSkyeng";
+  font-family: StratosSkyeng;
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -29,28 +29,32 @@ body {
   width: 480px;
   height: 459px;
   margin-top: 75px;
+
   &_form {
     display: flex;
     align-items: center;
     flex-direction: column;
-    flex-wrap: wrap;
     gap: 32px;
   }
+
   &_title {
     width: 400px;
     font-size: 40px;
     color: #004980;
     text-align: center;
   }
+
   &_radio-toolbar {
     display: flex;
     gap: 32px;
   }
+
   &_radio-toolbar input[type="radio"] {
     display: none;
   }
+
   &_radio-toolbar label {
-    background-color: #ffffff;
+    background-color: #fff;
     color: #0080c1;
     border: none;
     width: 98px;
@@ -63,11 +67,13 @@ body {
     justify-content: center;
     cursor: pointer;
   }
-  &_radio-toolbar input[type="radio"]:checked + label {
+
+  &_radio-toolbar label:hover {
     background-color: #7ac100;
     border: 1px solid #d0ffb7;
   }
-  &_radio-toolbar label:hover {
+
+  &_radio-toolbar input[type="radio"]:checked + label {
     background-color: #7ac100;
     border: 1px solid #d0ffb7;
   }
@@ -80,7 +86,7 @@ body {
   width: 246px;
   height: 50px;
   color: white;
-  padding: 15px 15x;
+  padding: 15px;
   text-align: center;
   font-size: 24px;
 }
@@ -88,15 +94,18 @@ body {
 .page-maps {
   width: 1024px;
   height: 724px;
+
   &_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
+
   &_time-figure {
-    color: #ffffff;
+    color: #fff;
     font-size: 64px;
   }
+
   &_time-value {
     height: 32px;
     display: flex;
@@ -104,8 +113,9 @@ body {
     flex-wrap: wrap;
     gap: 65px;
     font-size: 16px;
-    color: #ffffff;
+    color: #fff;
   }
+
   &_button-newgame {
     background-color: #7ac100;
     border: none;
@@ -113,7 +123,7 @@ body {
     width: 246px;
     height: 50px;
     color: white;
-    padding: 15px 15x;
+    padding: 15px;
     text-align: center;
     font-size: 24px;
   }
@@ -125,6 +135,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .card {
   width: 96px;
   height: 135px;
@@ -133,6 +144,7 @@ body {
   margin: 10px;
   perspective: 1000px;
   cursor: pointer;
+
   &__front,
   &__back {
     position: absolute;
@@ -140,15 +152,19 @@ body {
     height: 100%;
     backface-visibility: hidden;
   }
+
   &__front {
     transform: rotateY(180deg);
   }
+
   &__back {
     transform: rotateY(0deg);
   }
+
   &.flipped &__front {
     transform: rotateY(0deg);
   }
+
   &.flipped &__back {
     transform: rotateY(-180deg);
   }
@@ -166,6 +182,7 @@ body {
     justify-content: center;
     align-items: center;
   }
+
   &_title {
     margin-bottom: 10px;
     margin-top: 5px;
@@ -173,23 +190,24 @@ body {
     color: #004980;
     text-align: center;
   }
+
   &_time-value {
     margin-top: 5px;
     margin-bottom: 5px;
     font-size: 24px;
     color: black;
   }
+
   &_time-figure {
     margin-bottom: 20px;
     font-size: 64px;
     color: black;
   }
 }
+
 .darken {
   background: url("/static/image/fon1.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 1024px 724px;
-  background-blend-mode: multiply;
-  background-color: rgba(55, 5, 172, 0.836);
 }
