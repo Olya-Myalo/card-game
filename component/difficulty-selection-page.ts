@@ -2,7 +2,7 @@ import { renderPageLevelDifficulty } from "./page-level-difficulty";
 
 export function renderDifficultySelectionPage() {
   const app: HTMLElement = document.getElementById("app")!;
-  const appHtml: string = `<div class="basic">
+  const appHtml = `<div class="basic">
         <form class="basic_form">
             <p class="basic_title">Выберите сложность</p>
             <div class="basic_radio-toolbar">
@@ -23,26 +23,23 @@ export function renderDifficultySelectionPage() {
 
   const gameData = {
     difficulty: "easy",
-    numCards: 6,
+    numCards: 3,
   };
 
   const difficultyInputs = document.querySelectorAll(
     '.basic_radio-toolbar input[name="difficulty"]',
   );
 
-  const startButton: HTMLButtonElement =
-    document.querySelector("#start-button")!;
-
   function updateNumCards() {
     switch (gameData.difficulty) {
       case "easy":
-        gameData.numCards = 6;
+        gameData.numCards = 3;
         break;
       case "medium":
-        gameData.numCards = 12;
+        gameData.numCards = 6;
         break;
       case "hard":
-        gameData.numCards = 18;
+        gameData.numCards = 9;
         break;
     }
   }
@@ -54,6 +51,9 @@ export function renderDifficultySelectionPage() {
       updateNumCards();
     });
   });
+
+  const startButton: HTMLButtonElement =
+    document.querySelector("#start-button")!;
 
   startButton.addEventListener("click", () => {
     startGame(gameData.difficulty);

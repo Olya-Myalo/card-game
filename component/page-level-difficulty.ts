@@ -1,10 +1,11 @@
 import { cards } from "./array-сards";
+import { renderDifficultySelectionPage } from "./difficulty-selection-page";
 
 export function renderPageLevelDifficulty(difficulty: string) {
   const shuffledCards = shuffle([...cards, ...cards]);
 
   const app: HTMLElement = document.getElementById("app")!;
-  const appHtml: string = `
+  const appHtml = `
       <div class="page-maps">
         <div class="page-maps_header">
           <div class="page-maps_time">
@@ -15,9 +16,24 @@ export function renderPageLevelDifficulty(difficulty: string) {
             <div class="page-maps_time-figure">00.00</div>
           </div>
           <div>
-            <button id="restart-button" class="page-maps_button-newgame">Начать заново</button>
-          </div>
+          <button id="restart-button" class="page-maps_button-newgame">Начать заново</button>
         </div>
+      </div>
+
+            <div class="modal" id="modal" style="display: none;">
+              <div class="modal_basic">
+              <div class="modal_content2">
+                <div id="modalImage" class="modal_img">
+                </div>
+                  <p class="modal_text">текст</p>
+                  <p class="modal_time-value">Затраченное время</p>
+                    <div class="modal_time-figure">00:00
+                    </div>
+                    <button id="start-button" type="submit" class="button">Играть снова</button>
+              </div>
+              </div>
+            </div>
+
         <div class="cards">
         ${renderCards(difficulty, shuffledCards)}
         </div>
@@ -25,6 +41,13 @@ export function renderPageLevelDifficulty(difficulty: string) {
     `;
 
   app.innerHTML = appHtml;
+
+  const startButton: HTMLButtonElement =
+    document.querySelector("#start-button")!;
+
+  startButton.addEventListener("click", () => {
+    renderDifficultySelectionPage();
+  });
 
   const cardElements = document.querySelectorAll(".card");
   cardElements.forEach((card: Element) => {
@@ -115,18 +138,19 @@ export function shuffle<T>(array: Array<T>): Array<T> {
 export function getNumCards(difficulty: string) {
   switch (difficulty) {
     case "easy":
-      return 6;
+      return 3;
     case "medium":
-      return 12;
-    case "hard":
-      return 18;
-    default:
       return 6;
+    case "hard":
+      return 9;
+    default:
+      return 3;
   }
 }
 
-let flippedFirstCardId: string = "";
-let cardsCount: number = 0;
+let flippedFirstCardId = "";
+let cardsCount = 0;
+
 function flipCard(
   event: Event,
   difficulty: string,
@@ -134,12 +158,15 @@ function flipCard(
 ) {
   const currentCard = event.currentTarget as HTMLDivElement;
   const cardId = currentCard.dataset.id as string;
+
   if (!currentCard.classList.contains("flipped")) {
     return;
   }
+
   currentCard.classList.remove("flipped");
   cardsCount += 1;
   const totalCards = getNumCards(difficulty) * 2;
+
   // клик на первую карту, сохраняет ее
   if (flippedFirstCardId === "") {
     flippedFirstCardId = cardId;
@@ -150,40 +177,31 @@ function flipCard(
         const formattedTime = document.querySelector(".page-maps_time-figure")
           ?.textContent;
         clearInterval(timerInterval);
-        renderFinalPage(true, formattedTime);
+        showModal(true, formattedTime);
       }
     } else {
       const formattedTime = document.querySelector(".page-maps_time-figure")
         ?.textContent;
       clearInterval(timerInterval);
-      renderFinalPage(false, formattedTime);
+      showModal(false, formattedTime);
     }
   }
+}
 
-  function renderFinalPage(
-    isPageVictory: boolean,
-    formattedTime: string | null | undefined,
-  ) {
-    const body = document.getElementsByTagName("body")[0];
-    body.classList.add("darken");
-    const app: HTMLElement = document.getElementById("app")!;
-    const appHtml: string = `<div class="page-final">
-      <form class="page-final_form">
-          <div> ${
-            isPageVictory
-              ? '<img src="static/image/victory.svg" alt="победа">'
-              : '<img src="static/image/dead.svg" alt="проигрыш">'
-          }
-          </div>
-          <p class="page-final_title">${
-            isPageVictory ? "Вы выиграли!" : "Вы проиграли!"
-          }</p>
-          <p class="page-final_time-value">Затраченное время</p>
-          <div class="page-final_time-figure">${formattedTime}</div>
-        <div>
-          <button id="start-button" type="submit" class="button">Играть снова</button>
-      </form>
-    </div>`;
-    app.innerHTML = appHtml;
-  }
+function showModal(
+  isPageVictory: boolean,
+  formattedTime: string | null | undefined,
+) {
+  const modal: any = document.getElementById("modal");
+  modal.style.display = "block";
+
+  const modalTime: any = modal.querySelector(".modal_time-figure");
+  modalTime.textContent = formattedTime;
+
+  const modalText: any = modal.querySelector(".modal_text");
+  modalText.textContent = isPageVictory ? "Вы выиграли!" : "Вы проиграли!";
+
+  const modalElement = document.getElementById("modalImage");
+  modalElement?.classList.toggle("modal_imgVictory", isPageVictory);
+  modalElement?.classList.toggle("modal_imgDead", !isPageVictory);
 }
