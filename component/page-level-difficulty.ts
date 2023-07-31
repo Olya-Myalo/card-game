@@ -192,16 +192,26 @@ function showModal(
   isPageVictory: boolean,
   formattedTime: string | null | undefined,
 ) {
-  const modal: any = document.getElementById("modal");
-  modal.style.display = "block";
+  const modal: HTMLElement | null = document.getElementById("modal");
+  if (modal) {
+    modal.style.display = "block";
 
-  const modalTime: any = modal.querySelector(".modal_time-figure");
-  modalTime.textContent = formattedTime;
+    const modalTime: HTMLElement | null =
+      modal.querySelector(".modal_time-figure");
+    if (modalTime) {
+      modalTime.textContent = formattedTime !== undefined ? formattedTime : ""; // Проверяем на неопределенность перед присвоением
+    }
 
-  const modalText: any = modal.querySelector(".modal_text");
-  modalText.textContent = isPageVictory ? "Вы выиграли!" : "Вы проиграли!";
+    const modalText: HTMLElement | null = modal.querySelector(".modal_text");
+    if (modalText) {
+      modalText.textContent = isPageVictory ? "Вы выиграли!" : "Вы проиграли!";
+    }
 
-  const modalElement = document.getElementById("modalImage");
-  modalElement?.classList.toggle("modal_imgVictory", isPageVictory);
-  modalElement?.classList.toggle("modal_imgDead", !isPageVictory);
+    const modalElement: HTMLElement | null =
+      document.getElementById("modalImage");
+    if (modalElement) {
+      modalElement.classList.toggle("modal_imgVictory", isPageVictory);
+      modalElement.classList.toggle("modal_imgDead", !isPageVictory);
+    }
+  }
 }
